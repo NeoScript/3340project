@@ -1,3 +1,4 @@
+<<<<<<< HEAD:Nasir/stringCompare.asm
 .globl printStrCmp
  printStrCmp:   # Start of code section
 
@@ -14,7 +15,14 @@
         syscall
         
 .globl StrCmp
+=======
+
+.globl StrCmp #make global
+
+>>>>>>> 7ae28b26389ce8c4a444a3506d6253f926377168:stringCompare.asm
  StrCmp:
+ 	
+ 	
 	lbu		$t0,0($a0)		# Load a byte from the first source string.
 	lbu		$t1,0($a1)		# Load a byte from the second source string.
 	 
@@ -27,7 +35,7 @@
 continue:					# o/w Increment both addresses and continue.
 	addi	$a0,$a0,1		
 	addi	$a1,$a1,1
-	b		StrCmp
+	j 		StrCmp
 
 Minus:						# returned if s1 < s2
 	li		$v0,-1
