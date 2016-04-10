@@ -1,33 +1,9 @@
 
-	
-.data        # Data declaration section
-str1:   .asciiz "Hello World!\n"
-str2:   .asciiz "Hello World!\n"
-
-.text
-
-.globl printStrCmp
-
- printStrCmp:   # Start of code section
-
-        # Load the address of the message
-        # into the $a0 register. Then load 4 into
-
-        # the $v0 register to tell the processor
-        # that you want to print a string.
-       
-        
-        jal StrCmp
-	
-	add $a0, $v0, $zero  # load desired value into argument register $a0, using pseudo-op
-        li $v0, 1
-        syscall
-        
-        
-        
-
+.globl StrCmp #make global
 
  StrCmp:
+ 	
+ 	
 	lbu		$t0,0($a0)		# Load a byte from the first source string.
 	lbu		$t1,0($a1)		# Load a byte from the second source string.
 	 
@@ -40,7 +16,7 @@ str2:   .asciiz "Hello World!\n"
 continue:					# o/w Increment both addresses and continue.
 	addi	$a0,$a0,1		
 	addi	$a1,$a1,1
-	b		StrCmp
+	j 		StrCmp
 
 Minus:						# returned if s1 < s2
 	li		$v0,-1
