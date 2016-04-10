@@ -4,6 +4,7 @@
 file_loc: .asciiz "test.asm" #note: when launching from commandline, test.asm should be within the same folder as Mars.jar else it will default to base of the c:/ drive
 buffer: .space 1
 new_line: .asciiz "\n"
+space_char: .asciiz " "
 currInput: .space 20
 
 #error strings
@@ -43,8 +44,16 @@ readTillSpace:
 	bltz $v0, readError		#if error it will go to read error
 					#else if no error continue working on method
 					
-					#if input is not a space, then add it to the currInput buffer
-					#else if input is a space, then disregard it and leave this method
+	#if input is not a space, then add it to the currInput buffer
+	la $a0, buffer
+	la $a1, space_char
+	jal StrCmp
+	
+	li $v0, 4
+	la $a0, $v0
+	syscall
+	jr $ra
+	#else if input is a space, then disregard it and leave this method
 	jr $ra
 	
 printCurrInput:

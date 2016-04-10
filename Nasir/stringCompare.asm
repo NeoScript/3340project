@@ -1,13 +1,4 @@
-
-	
-.data        # Data declaration section
-str1:   .asciiz "Hello World!\n"
-str2:   .asciiz "Hello World!\n"
-
-.text
-
 .globl printStrCmp
-
  printStrCmp:   # Start of code section
 
         # Load the address of the message
@@ -15,7 +6,6 @@ str2:   .asciiz "Hello World!\n"
 
         # the $v0 register to tell the processor
         # that you want to print a string.
-       
         
         jal StrCmp
 	
@@ -23,10 +13,7 @@ str2:   .asciiz "Hello World!\n"
         li $v0, 1
         syscall
         
-        
-        
-
-
+.globl StrCmp
  StrCmp:
 	lbu		$t0,0($a0)		# Load a byte from the first source string.
 	lbu		$t1,0($a1)		# Load a byte from the second source string.
@@ -53,4 +40,4 @@ Plus:						# returned if s1 > s2
 Zero:						# returned if s1 == s1
 	li		$v0,0
 	jr		$ra
-	.end
+
