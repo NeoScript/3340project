@@ -96,8 +96,9 @@ isSpace:
  syscall 
  
 #PROCESS T5
+	jal checkEOF	#check to see if we have reached end of file
+	#Done checking for EOF, if we reached this point we can now check for operands/registers
 	#go to srirams method here and let him do work
-	jal checkEOF
 #CLEAR
  	jal clearBuffer
  add   $t6, $zero, $zero     #increment the index of nospaces
