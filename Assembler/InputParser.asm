@@ -98,7 +98,18 @@ isSpace:
 #PROCESS T5
 	jal checkEOF	#check to see if we have reached end of file
 	#Done checking for EOF, if we reached this point we can now check for operands/registers
-	#go to srirams method here and let him do work
+	
+    addi $sp, $sp, -12
+        sw  $ra, 0($sp) 
+        sw      $t5, 4($sp)
+            sw      $t7, 8($sp) 
+    jal processOperation #do processing on the input argument   
+        lw      $t7, 8($sp) 
+        lw      $t5, 4($sp)
+            lw  $ra, 0($sp)
+    addi $sp, $sp, 12
+
+    
 #CLEAR
  	jal clearBuffer
  add   $t6, $zero, $zero     #increment the index of nospaces
