@@ -85,4 +85,4 @@ found:
 	#jal logOperation
 
 print_loop_end:
-
+jr $ra
