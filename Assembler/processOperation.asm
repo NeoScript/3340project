@@ -85,5 +85,4 @@ found:
 	#jal logOperation
 
 print_loop_end:
-li $v0, 10
-syscall
+

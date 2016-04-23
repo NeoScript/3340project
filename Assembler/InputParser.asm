@@ -27,6 +27,15 @@ countSpace:
 loop:   
     add     $t1, $t3, $t4   #$t1 = addr of str[i]
     lb      $t2, 0($t1)     #$t2 = character in str[i]
+    
+    isComma:
+    li      $t0, 44         #ascii value for comma character loaded into $t0
+    bne     $t0, $t2, continue #if ascii values dont match, character is a not a comma go to continue
+    li      $t0, 32         #ascii value for space character loaded into $t0
+    sb      $t0, 0($t1)     # character in str[i] =  $t0
+    lb      $t2, 0($t1)     #$t2 = character in str[i] = space
+    
+    continue:
     beq     $t2, $zero, exitCS  #break from loop if $t2 contains null character
     addi    $a0, $t2, 0     #place value to be checked in $a0
 

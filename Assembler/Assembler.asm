@@ -5,7 +5,7 @@ endOfFileLine: .asciiz ".end"
 #Error Messages:
 readErrorMsg: .asciiz "\nError in reading file\n"
 openErrorMsg: .asciiz "\nError in opening file\n"
-doneReadingLine: .asciiz "\after Reading Reached\n"
+doneReadingLine: .asciiz "after Reading Reached\n"
 
 .text
 .globl main
