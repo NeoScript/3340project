@@ -8,6 +8,7 @@ Read lines from file -complete
 Split lines for single word processing - complete
 
 
-Process words - 
+Process words - R type complete
 
-Output processed binary info -
+Output processed binary info - complete
+
