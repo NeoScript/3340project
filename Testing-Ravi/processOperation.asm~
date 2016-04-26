@@ -7,7 +7,7 @@ addNormal:		.asciiz "add"
 branchEqual:		.asciiz "beq"
 addUnsigned:		.asciiz "addu"
 andLogical:		.asciiz "and"
-#jumpRegister:		.asciiz "jr"
+jumpRegister:		.asciiz "jr"
 
 #OpCodes remember to convert from hex to binary
 addImmediateOP:		.asciiz "01000"
@@ -16,7 +16,7 @@ addNormalOP:		.asciiz "00000"
 branchEqualOP:		.asciiz "01000"
 addUnsignedOP:		.asciiz "00000"
 andLogicalOP:		.asciiz "00000"
-#jumpRegisterOP:		.asciiz "00000"
+jumpRegisterOP:		.asciiz "00000"
 
 #FunctionCodes remember to convert from hex to binary
 addImmediateF:		.asciiz "001000"
@@ -25,7 +25,7 @@ addNormalF:		.asciiz "010100"
 branchEqualF:		.asciiz "000000"
 addUnsignedF:		.asciiz "100001"
 andLogicalF:		.asciiz "100100"
-#jumpRegisterF:		.asciiz "001000"
+jumpRegisterF:		.asciiz "001000"
 
 #Operation Types
 typeR:		.asciiz "R"
@@ -33,11 +33,11 @@ typeI:		.asciiz "I"
 typeJ:		.asciiz "J"
 
 #Parrallel Arrays
-operations: 	.word addImmediate, addNormal, multiply,branchEqual, addUnsigned, andLogical	#we will search this array
-opCodes: 	.word addImmediateOP, addNormalOP, multiplyOP, branchEqualOP, addUnsignedOP, andLogicalOP
-functionCodes: 	.word addImmediateF, addNormalF, multiplyF, branchEqualF, addUnsignedF, andLogicalF
+operations: 	.word addImmediate, addNormal, multiply,branchEqual, addUnsigned, andLogical, jumpRegister	#we will search this array
+opCodes: 	.word addImmediateOP, addNormalOP, multiplyOP, branchEqualOP, addUnsignedOP, andLogicalOP, jumpRegisterOP
+functionCodes: 	.word addImmediateF, addNormalF, multiplyF, branchEqualF, addUnsignedF, andLogicalF, jumpRegisterF
 
-operationType: 	.word typeR, typeR, typeR, typeI, typeR, typeR
+operationType: 	.word typeR, typeR, typeR, typeI, typeR, typeR, typeR
 
 #Misc
 size: 	.word 6 #addup the number of entries in the parallel arrays
