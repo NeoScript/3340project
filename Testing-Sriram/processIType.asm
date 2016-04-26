@@ -1,22 +1,22 @@
 .data
     opCode: .space 24
-    funcCode: .space 24
+
     firstArgument: .space 20
     secondArgument: .space 20
-    thirdArgument: .space 20
+    thirdArgument: .space 40
     
     printString:      .space 23   # buffer for string w/o spaces
     
     shamtPlaceHolder: .asciiz "00000"
-    newline: .word '\n'
+    newline: .asciiz "\n"
     
     test: .asciiz "hello"
     
-#Process R-Type
+#Process I-Type
 .text
-.globl handleRType
+.globl handleIType
 
-handleRType:
+handleIType:
 	move $t0, $a0 #holds operand #
 	move $t1, $a1 #holds binary code to print (OP-Code if operation, value if operand)
 	move $t2, $a2 #hold funct code
@@ -34,12 +34,12 @@ handleRType:
 	
  
 addInitialArguments:
-#add opCode to memory 
-add $a0, $t1, $zero
-la $a1, opCode
+	#add opCode to memory 
+	add $a0, $t1, $zero
+	la $a1, opCode
 
-#make room on the stack and copy the string to Store
-addi $sp, $sp, -12		
+	#make room on the stack and copy the string to Store
+	addi $sp, $sp, -12		
 	sw $ra, 0($sp)	
 	sw $t1, 4($sp)
 	sw $t2, 8($sp)
@@ -47,24 +47,10 @@ addi $sp, $sp, -12
  	lw $ra, 0($sp)
  	lw $t1, 4($sp)
  	lw $t2, 8($sp)	
- addi $sp, $sp, 12		
- 
-#add function code to memory 
-add $a0, $t2, $zero
-la $a1, funcCode 
-
-addi $sp, $sp, -12		
-	sw $ra, 0($sp)	
-	sw $t1, 4($sp)
-	sw $t2, 8($sp)
- 	jal StrCpy
- 	lw $ra, 0($sp)
- 	lw $t1, 4($sp)
- 	lw $t2, 8($sp)	
- addi $sp, $sp, 12	
+	 addi $sp, $sp, 12		
  
 
- jr $ra
+	 jr $ra
  
 addFirstArgument:
 # load first Argument into buffer
@@ -121,14 +107,14 @@ addi $sp, $sp, -12
 addi $sp, $sp, -4	
  sw $ra, 0($sp)	 
 
-  jal printRtype
+  jal printItype
  
 lw $ra, 0($sp)	
 addi $sp, $sp, 4 #Go to next line
  
  jr $ra
 
-printRtype:
+printItype:
 	addi $sp, $sp, -12	
 	sw $ra, 0($sp)	
 	sw $t1, 4($sp)
@@ -145,19 +131,12 @@ printRtype:
 	la $a1, secondArgument # print value at the array pointer
 	jal write
 	 
+	 li $a2, 10
 	la $a1, thirdArgument # print value at the array pointer
 	jal write
 	 
-	la $a1, shamtPlaceHolder # print value at the array pointer
-	jal write
-	
-	la $a2, 6
-	la $a1, funcCode   # print value at the array pointer
-	jal write
-	
-	
-	la $a2, 1
 	la $a1, newline
+	la $a2, 1
 	jal write 
 	
 	lw $ra, 0($sp)

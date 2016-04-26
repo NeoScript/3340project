@@ -1,6 +1,6 @@
 
 .data
-output_file_name:   .asciiz "/home/sriram/Documents/3340project/Testing-Ravi/test.txt"      
+output_file_name:   .asciiz "C:/Users/sgb150130/Downloads/3340project-master/3340project-master/Testing-Sriram/test.txt"      
 buffer: .asciiz "The quick brown fox jumps over the lazy dog."
 file_descriptor: .word 0
 

@@ -87,6 +87,7 @@ foundOperand:
 	 sw      $t1, 8($sp) 
     	 sw      $s7, 12($sp) 
     	 
+
   	jal handleRType
   	 
 	 lw      $s7, 12($sp) 
