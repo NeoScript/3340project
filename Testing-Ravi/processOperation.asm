@@ -5,42 +5,33 @@ addImmediate:		.asciiz "addi"
 multiply:		.asciiz "mult"
 addNormal:		.asciiz "add"
 branchEqual:		.asciiz "beq"
-addUnsigned:		.asciiz "addu"
-andLogical:		.asciiz "and"
-#jumpRegister:		.asciiz "jr"
 
-#OpCodes remember to convert from hex to binary
+#FunctionCodes
+addImmediateF:		.asciiz "01000"
+multiplyF:		.asciiz "00000"
+addNormalF:		.asciiz "11010"
+branchEqualF:		.asciiz "10000"
+
+#OpCodes
 addImmediateOP:		.asciiz "01000"
 multiplyOP:		.asciiz "00000"
-addNormalOP:		.asciiz "00000"
-branchEqualOP:		.asciiz "01000"
-addUnsignedOP:		.asciiz "00000"
-andLogicalOP:		.asciiz "00000"
-#jumpRegisterOP:		.asciiz "00000"
-
-#FunctionCodes remember to convert from hex to binary
-addImmediateF:		.asciiz "001000"
-multiplyF:		.asciiz "011000"
-addNormalF:		.asciiz "010100"
-branchEqualF:		.asciiz "000000"
-addUnsignedF:		.asciiz "100001"
-andLogicalF:		.asciiz "100100"
-#jumpRegisterF:		.asciiz "001000"
+addNormalOP:		.asciiz "10010"
+branchEqualOP:		.asciiz "00000"
 
 #Operation Types
 typeR:		.asciiz "R"
 typeI:		.asciiz "I"
 typeJ:		.asciiz "J"
 
-#Parrallel Arrays
-operations: 	.word addImmediate, addNormal, multiply,branchEqual, addUnsigned, andLogical	#we will search this array
-opCodes: 	.word addImmediateOP, addNormalOP, multiplyOP, branchEqualOP, addUnsignedOP, andLogicalOP
-functionCodes: 	.word addImmediateF, addNormalF, multiplyF, branchEqualF, addUnsignedF, andLogicalF
 
-operationType: 	.word typeR, typeR, typeR, typeI, typeR, typeR
+#Parrallel Arrays
+operations: 	.word addImmediate, addNormal, multiply,branchEqual #we will search this array
+functionCodes: 	.word addImmediateF, addNormalF, multiplyF, branchEqualF 
+opCodes: 	.word addImmediateOP, addNormalOP, multiplyOP, branchEqualOP 
+operationType: 	.word typeR, typeR, typeR, typeI
 
 #Misc
-size: 	.word 6 #addup the number of entries in the parallel arrays
+size: 	.word 4
 space:	.asciiz " "
 match:	.asciiz "It's a match!"
 .text
