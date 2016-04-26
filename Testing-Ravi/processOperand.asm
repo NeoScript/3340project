@@ -1,23 +1,78 @@
 .data
 
-#Operations
+#Registers
+constZeroInt:	.asciiz "$0"
+constZeroStr:	.asciiz "$zero"
+assemblerTemp:	.asciiz "$at"
+vZero:		.asciiz "$v0"
+vOne:		.asciiz "$v1"
+argZero:	.asciiz "$a0"
+argOne:		.asciiz "$a1"
+argTwo:		.asciiz "$a2"
 tempZero:	.asciiz "$t0"
 tempOne:	.asciiz "$t1"
 tempTwo:	.asciiz "$t2"
 tempThree:	.asciiz "$t3"
+tempFour:	.asciiz "$t7"
+tempFive:	.asciiz "$t5"
+tempSix:	.asciiz "$t6"
+tempSeven:	.asciiz "$t7"
+savedTempOne:	.asciiz "$s0"
+savedTempTwo:	.asciiz "$s1"
+savedTempThree:	.asciiz "$s3"
+savedTempFour:	.asciiz "$s4"
+savedTempFive:	.asciiz	"$s5"
+savedTempSix:	.asciiz "$s6"
+savedTempSeven:	.asciiz	"$s7"
+tempEight:	.asciiz "$t8"
+tempNine:	.asciiz "$t9"
+kernelZero:	.asciiz "$k0"
+kernelOne:	.asciiz "$k1"
+globalPointer:	.asciiz	"$gp"
+stackPointer:	.asciiz "$sp"
+framePointer:	.asciiz	"$fp"
+returnAddress:	.asciiz	"$ra"
 
 
-#Operation Types
-t0:		.asciiz "11111"
-t1:		.asciiz "00000"
-t2:		.asciiz "22222"
+#Register values - in binary
+constZeroIntVal:	.asciiz "$0"
+constZeroStrVal:	.asciiz "$zero"
+assemblerTempVal:	.asciiz "$at"
+vZeroVal:		.asciiz "$v0"
+vOneVal:		.asciiz "$v1"
+argZeroVal:		.asciiz "$a0"
+argOneVal:		.asciiz "$a1"
+argTwoVal:		.asciiz "$a2"
+tempZeroVal:		.asciiz "$t0"
+tempOneVal:		.asciiz "$t1"
+tempTwoVal:		.asciiz "$t2"
+tempThreeVal:		.asciiz "$t3"
+tempFourVal:		.asciiz "$t7"
+tempFiveVal:		.asciiz "$t5"
+tempSixVal:		.asciiz "$t6"
+tempSevenVal:		.asciiz "$t7"
+savedTempOneVal:	.asciiz "$s0"
+savedTempTwoVal:	.asciiz "$s1"
+savedTempThreeVal:	.asciiz "$s3"
+savedTempFourVal:	.asciiz "$s4"
+savedTempFiveVal:	.asciiz	"$s5"
+savedTempSixVal:	.asciiz "$s6"
+savedTempSevenVal:	.asciiz	"$s7"
+tempEightVal:		.asciiz "$t8"
+tempNineVal:		.asciiz "$t9"
+kernelZeroVal:		.asciiz "$k0"
+kernelOneVal:		.asciiz "$k1"
+globalPointerVal:	.asciiz	"$gp"
+stackPointerVal:	.asciiz "$sp"
+framePointerVal:	.asciiz	"$fp"
+returnAddressVal:	.asciiz	"$ra"
 
 
 
 
 #Parrallel Arrays
-operations: 	.word tempZero, tempOne, tempTwo #we will search this array
-operationType: 	.word t0, t1, t2
+operations: 	.word constZeroInt,constZeroStr,assemblerTemp,vZero,vOne,argZero,argOne,argTwo,tempZero,tempOne,tempTwo,tempThree,tempFour,tempSix,tempSeven,savedTempOne,savedTempTwo,savedTempThree,savedTempFour,savedTempFive,savedTempSix,savedTempSeven,tempEight,tempNine,kernelZero,kernelOne,globalPointer,stackPointer,framePointer,returnAddress #we will search this array
+operationType: 	.word constZeroIntVal,constZeroStrVal,assemblerTempVal,vZeroVal,vOneVal,argZeroVal,argOneVal,argTwoVal,tempZeroVal,tempOneVal,tempTwoVal,tempThreeVal,tempFourVal,tempSixVal,tempSevenVal,savedTempOneVal,savedTempTwoVal,savedTempThreeVal,savedTempFourVal,savedTempFiveVal,savedTempSixVal,savedTempSevenVal,tempEightVal,tempNineVal,kernelZeroVal,kernelOneVal,globalPointerVal,stackPointerVal,framePointerVal,returnAddressVal
 
 #Misc
 size: 	.word 3
