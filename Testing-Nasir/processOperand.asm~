@@ -73,7 +73,7 @@ returnAddressVal:	.asciiz	"$ra"
 
 #Parrallel Arrays
 operations: 	.word constZeroInt, constZeroStr, assemblerTemp, vZero, vOne, argZero, argOne, argTwo, tempZero, tempOne, tempTwo, tempThree, tempFour, tempSix, tempSeven, savedTempOne, savedTempTwo, savedTempThree, savedTempFour, savedTempFive, savedTempSix, savedTempSeven, tempEight, tempNine, kernelZero, kernelOne, globalPointer, stackPointer, framePointer, returnAddress #we will search this array
-operationType: 	.word constZeroIntVal, constZeroStrVal, assemblerTempVal, vZeroVal, vOneVal, argZeroVal, argOneVal, argTwoVal, tempZeroVal, tempOneVal, tempTwoVal, tempThreeVal, tempFourVal, tempSixVal, tempSevenVal, savedTempOneVal, savedTempTwoVal, savedTempThreeVal,savedTempFourVal,savedTempFiveVal,savedTempSixVal,savedTempSevenVal,tempEightVal,tempNineVal,kernelZeroVal,kernelOneVal,globalPointerVal,stackPointerVal,framePointerVal,returnAddressVal
+operationType: 	.word constZeroIntVal, constZeroStrVal, assemblerTempVal, vZeroVal, vOneVal, argZeroVal, argOneVal, argTwoVal, tempZeroVal, tempOneVal, tempTwoVal, tempThreeVal, tempFourVal, tempSixVal, tempSevenVal, savedTempOneVal, savedTempTwoVal, savedTempThreeVal, savedTempFourVal, savedTempFiveVal, savedTempSixVal, savedTempSevenVal, tempEightVal, tempNineVal, kernelZeroVal, kernelOneVal, globalPointerVal, stackPointerVal, framePointerVal, returnAddressVal
 
 #Misc
 size: 	.word 3
