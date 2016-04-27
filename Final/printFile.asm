@@ -1,6 +1,10 @@
 
 .data
+<<<<<<< HEAD
 output_file_name:   .asciiz "/Users/Raviteja/Documents/Projects/MIPSprograms/MipsAssembler/Testing-Ravi/output.txt"      
+=======
+output_file_name:   .asciiz "output.txt"      
+>>>>>>> master
 buffer: .asciiz "The quick brown fox jumps over the lazy dog."
 file_descriptor: .word 0
 
