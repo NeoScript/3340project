@@ -6,6 +6,6 @@ This project uses MIPS Assembly Language in order to assemble MIPS instructions 
 
 
 ##Project Documentation 
-We have (Wiki)[https://github.com/NeoScript/3340project/wiki] page dedicated to describing our methods and proecdures, check it out!
+We have [Wiki](https://github.com/NeoScript/3340project/wiki) page dedicated to describing our methods and proecdures, check it out!
 
 
