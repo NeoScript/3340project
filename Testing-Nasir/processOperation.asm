@@ -3,20 +3,42 @@
 #Operations
 addImmediate:		.asciiz "addi"
 multiply:		.asciiz "mult"
+multiplyUn:		.asciiz	"multu"
 addNormal:		.asciiz "add"
-branchEqual:		.asciiz "beq"
+andLogical:		.asciiz	"and"
+norLogical:		.asciiz	"nor"
+orLogical:		.asciiz	"or"
+setLessThan:		.asciiz	"slt"
+setLessThanUn:		.asciiz	"sltu"
+subtract:		.asciiz	"sub"
+subtractUn:		.asciiz	"subu
 
-#FunctionCodes
-addImmediateF:		.asciiz "01000"
-multiplyF:		.asciiz "00000"
-addNormalF:		.asciiz "11010"
-branchEqualF:		.asciiz "10000"
 
 #OpCodes
-addImmediateOP:		.asciiz "01000"
+addImmediateOP:		.asciiz "00000"
 multiplyOP:		.asciiz "00000"
-addNormalOP:		.asciiz "10010"
-branchEqualOP:		.asciiz "00000"
+multiplyUnOP:		.asciiz	"00000"
+addNormalOP:		.asciiz "00000"
+andLogicalOP:		.asciiz	"00000"
+norLogicalOP:		.asciiz	"00000"
+orLogicalOP:		.asciiz	"00000"
+setLessThanOP:		.asciiz	"00000"
+setLessThanUnOP:	.asciiz	"00000"
+subtractOP:		.asciiz	"00000"
+subtractUnOP:		.asciiz	"00000"
+
+#FunctionCodes
+addImmediateF:		.asciiz "001000"
+multiplyF:		.asciiz "011000"
+multiplyUnF:		.asciiz	"011001"
+addNormalF:		.asciiz "100000"
+andLogicalF:		.asciiz	"100100"
+norLogicalF:		.asciiz	"100111"
+orLogicalF:		.asciiz	"100101"
+setLessThanF:		.asciiz	"101010"
+setLessThanUnF:		.asciiz	"101011"
+subtractF:		.asciiz	"100010"
+subtractUnF:		.asciiz	"100011"
 
 #Operation Types
 typeR:		.asciiz "R"
@@ -25,13 +47,13 @@ typeJ:		.asciiz "J"
 
 
 #Parrallel Arrays
-operations: 	.word addImmediate, addNormal, multiply,branchEqual #we will search this array
-functionCodes: 	.word addImmediateF, addNormalF, multiplyF, branchEqualF 
-opCodes: 	.word addImmediateOP, addNormalOP, multiplyOP, branchEqualOP 
-operationType: 	.word typeR, typeR, typeR, typeI
+operations: 	.word addImmediate, multiply, multiplyUn, addNormal, andLogical, norLogical, orLogical, setLessThan, setLessThanUn, subtract, subtractUn #we will search this array
+functionCodes: 	.word addImmediateF, multiplyF, multiplyUnF, addNormalF, andLogicalF, norLogicalF, orLogicalF, setLessThanF, setLessThanUnF, subtractF, subtractUnF
+opCodes: 	.word addImmediateOP, multiplyOP, multiplyUnOP, addNormalOP, andLogicalOP, norLogicalOP, orLogicalOP, setLessThanOP, setLessThanUnOP, subtractOP, subtractUnOP
+operationType: 	.word typeR, typeR, typeR
 
 #Misc
-size: 	.word 4
+size: 	.word 11
 space:	.asciiz " "
 match:	.asciiz "It's a match!"
 .text
