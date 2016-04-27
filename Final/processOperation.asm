@@ -1,8 +1,7 @@
 .data
 
 #Operations
-multiply:		.asciiz "mult"
-multiplyUn:		.asciiz	"multu"
+
 addNormal:		.asciiz "add"
 andLogical:		.asciiz	"and"
 norLogical:		.asciiz	"nor"
@@ -14,8 +13,7 @@ subtractUn:		.asciiz	"subu"
 
 
 #OpCodes
-multiplyOP:		.asciiz "000000"
-multiplyUnOP:		.asciiz	"000000"
+
 addNormalOP:		.asciiz "000000"
 andLogicalOP:		.asciiz	"000000"
 norLogicalOP:		.asciiz	"000000"
@@ -26,8 +24,7 @@ subtractOP:		.asciiz	"000000"
 subtractUnOP:		.asciiz	"000000"
 
 #FunctionCodes
-multiplyF:		.asciiz "011000"
-multiplyUnF:		.asciiz	"011001"
+
 addNormalF:		.asciiz "100000"
 andLogicalF:		.asciiz	"100100"
 norLogicalF:		.asciiz	"100111"
@@ -44,10 +41,10 @@ typeJ:		.asciiz "J"
 
 
 #Parrallel Arrays
-operations: 	.word multiply, multiplyUn, addNormal, andLogical, norLogical, orLogical, setLessThan, setLessThanUn, subtract, subtractUn #we will search this array
-functionCodes: 	.word multiplyF, multiplyUnF, addNormalF, andLogicalF, norLogicalF, orLogicalF, setLessThanF, setLessThanUnF, subtractF, subtractUnF
-opCodes: 	.word multiplyOP, multiplyUnOP, addNormalOP, andLogicalOP, norLogicalOP, orLogicalOP, setLessThanOP, setLessThanUnOP, subtractOP, subtractUnOP
-operationType: 	.word typeR, typeR, typeR, typeR, typeR, typeR, typeR, typeR, typeR, typeR, typeR
+operations: 	.word addNormal, andLogical, norLogical, orLogical, setLessThan, setLessThanUn, subtract, subtractUn #we will search this array
+functionCodes: 	.word addNormalF, andLogicalF, norLogicalF, orLogicalF, setLessThanF, setLessThanUnF, subtractF, subtractUnF
+opCodes: 	.word addNormalOP, andLogicalOP, norLogicalOP, orLogicalOP, setLessThanOP, setLessThanUnOP, subtractOP, subtractUnOP
+operationType: 	.word typeR, typeR, typeR, typeR, typeR, typeR, typeR, typeR, typeR
 
 #Misc
 size: 	.word 10
