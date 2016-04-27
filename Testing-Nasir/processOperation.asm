@@ -11,7 +11,7 @@ orLogical:		.asciiz	"or"
 setLessThan:		.asciiz	"slt"
 setLessThanUn:		.asciiz	"sltu"
 subtract:		.asciiz	"sub"
-subtractUn:		.asciiz	"subu
+subtractUn:		.asciiz	"subu"
 
 
 #OpCodes
