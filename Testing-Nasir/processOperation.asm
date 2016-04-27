@@ -50,7 +50,7 @@ typeJ:		.asciiz "J"
 operations: 	.word addImmediate, multiply, multiplyUn, addNormal, andLogical, norLogical, orLogical, setLessThan, setLessThanUn, subtract, subtractUn #we will search this array
 functionCodes: 	.word addImmediateF, multiplyF, multiplyUnF, addNormalF, andLogicalF, norLogicalF, orLogicalF, setLessThanF, setLessThanUnF, subtractF, subtractUnF
 opCodes: 	.word addImmediateOP, multiplyOP, multiplyUnOP, addNormalOP, andLogicalOP, norLogicalOP, orLogicalOP, setLessThanOP, setLessThanUnOP, subtractOP, subtractUnOP
-operationType: 	.word typeR, typeR, typeR
+operationType: 	.word typeI, typeR, typeR, typeR, typeR, typeR, typeR, typeR, typeR, typeR, typeR, typeR
 
 #Misc
 size: 	.word 11
