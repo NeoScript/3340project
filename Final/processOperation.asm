@@ -14,16 +14,16 @@ subtractUn:		.asciiz	"subu"
 
 
 #OpCodes
-multiplyOP:		.asciiz "00000"
-multiplyUnOP:		.asciiz	"00000"
-addNormalOP:		.asciiz "00000"
-andLogicalOP:		.asciiz	"00000"
-norLogicalOP:		.asciiz	"00000"
-orLogicalOP:		.asciiz	"00000"
-setLessThanOP:		.asciiz	"00000"
-setLessThanUnOP:	.asciiz	"00000"
-subtractOP:		.asciiz	"00000"
-subtractUnOP:		.asciiz	"00000"
+multiplyOP:		.asciiz "000000"
+multiplyUnOP:		.asciiz	"000000"
+addNormalOP:		.asciiz "000000"
+andLogicalOP:		.asciiz	"000000"
+norLogicalOP:		.asciiz	"000000"
+orLogicalOP:		.asciiz	"000000"
+setLessThanOP:		.asciiz	"000000"
+setLessThanUnOP:	.asciiz	"000000"
+subtractOP:		.asciiz	"000000"
+subtractUnOP:		.asciiz	"000000"
 
 #FunctionCodes
 multiplyF:		.asciiz "011000"
