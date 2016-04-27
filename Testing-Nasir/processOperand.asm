@@ -12,6 +12,7 @@ vOne:		.asciiz "$v1"
 argZero:	.asciiz "$a0"
 argOne:		.asciiz "$a1"
 argTwo:		.asciiz "$a2"
+argThree:	.asciiz	"$a3"
 
 tempZero:	.asciiz "$t0"
 tempOne:	.asciiz "$t1"
