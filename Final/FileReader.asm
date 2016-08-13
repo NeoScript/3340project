@@ -1,7 +1,7 @@
 ## Note: currently reads information from files using 1024 buffer, not currently in a loop until I can figure out how to read line by line
 # Save operand to $s7, then operands to $s6, $s5, $s4, 
 .data
-file_loc: .asciiz "/Users/Raviteja/Documents/Projects/MIPSprograms/MipsAssembler/Assembler/test.asm" #note: when launching from commandline, test.asm should be within the same folder as Mars.jar else it will default to base of the c:/ drive
+file_loc: .asciiz "test.asm" #note: when launching from commandline, test.asm should be within the same folder as Mars.jar else it will default to base of the c:/ drive
 buffer: .space 1
 new_line: .asciiz "\n"
 space_char: .asciiz " "

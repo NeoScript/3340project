@@ -1,0 +1,2 @@
+in order to acheive the same results, the test input files must be renamed to test.asm
+and the output will be output.txt

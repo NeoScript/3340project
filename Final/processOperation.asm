@@ -1,6 +1,13 @@
 .data
 
 #Operations
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> master
+>>>>>>> origin/master
 addNormal:		.asciiz "add"
 andLogical:		.asciiz	"and"
 norLogical:		.asciiz	"nor"
@@ -11,7 +18,9 @@ subtract:		.asciiz	"sub"
 subtractUn:		.asciiz	"subu"
 
 
+<<<<<<< HEAD
 #OpCodes
+<<<<<<< HEAD
 addNormalOP:		.asciiz "00000"
 andLogicalOP:		.asciiz	"00000"
 norLogicalOP:		.asciiz	"00000"
@@ -20,10 +29,26 @@ setLessThanOP:		.asciiz	"00000"
 setLessThanUnOP:	.asciiz	"00000"
 subtractOP:		.asciiz	"00000"
 subtractUnOP:		.asciiz	"00000"
+=======
+
+=======
+#OpCodes"
+>>>>>>> master
+addNormalOP:		.asciiz "000000"
+andLogicalOP:		.asciiz	"000000"
+norLogicalOP:		.asciiz	"000000"
+orLogicalOP:		.asciiz	"000000"
+setLessThanOP:		.asciiz	"000000"
+setLessThanUnOP:	.asciiz	"000000"
+subtractOP:		.asciiz	"000000"
+subtractUnOP:		.asciiz	"000000"
+>>>>>>> origin/master
 
 #FunctionCodes
-multiplyF:		.asciiz "011000"
-multiplyUnF:		.asciiz	"011001"
+<<<<<<< HEAD
+
+=======
+>>>>>>> master
 addNormalF:		.asciiz "100000"
 andLogicalF:		.asciiz	"100100"
 norLogicalF:		.asciiz	"100111"
@@ -40,10 +65,17 @@ typeJ:		.asciiz "J"
 
 
 #Parrallel Arrays
+<<<<<<< HEAD
 operations: 	.word  addNormal, andLogical, norLogical, orLogical, setLessThan, setLessThanUn, subtract, subtractUn #we will search this array
 functionCodes: 	.word  addNormalF, andLogicalF, norLogicalF, orLogicalF, setLessThanF, setLessThanUnF, subtractF, subtractUnF
 opCodes: 	.word  addNormalOP, andLogicalOP, norLogicalOP, orLogicalOP, setLessThanOP, setLessThanUnOP, subtractOP, subtractUnOP
 operationType: 	.word  typeR, typeR, typeR, typeR, typeR, typeR, typeR, typeR, typeR
+=======
+operations: 	.word addNormal, andLogical, norLogical, orLogical, setLessThan, setLessThanUn, subtract, subtractUn #we will search this array
+functionCodes: 	.word addNormalF, andLogicalF, norLogicalF, orLogicalF, setLessThanF, setLessThanUnF, subtractF, subtractUnF
+opCodes: 	.word addNormalOP, andLogicalOP, norLogicalOP, orLogicalOP, setLessThanOP, setLessThanUnOP, subtractOP, subtractUnOP
+operationType: 	.word typeR, typeR, typeR, typeR, typeR, typeR, typeR, typeR, typeR
+>>>>>>> origin/master
 
 #Misc
 size: 	.word 8

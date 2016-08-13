@@ -1,6 +1,10 @@
 .data
 #File helpers:
+<<<<<<< HEAD
 file_location: .asciiz "/Users/Raviteja/Documents/Projects/MIPSprograms/MipsAssembler/test.asm"
+=======
+file_location: .asciiz "test.asm"
+>>>>>>> origin/master
 endOfFileLine: .asciiz ".end"
 #Error Messages:
 readErrorMsg: .asciiz "\nError in reading file\n"
