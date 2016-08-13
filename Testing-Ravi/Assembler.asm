@@ -10,7 +10,9 @@ doneReadingLine: .asciiz "after Reading Reached\n"
 .text
 .globl main
 main:	
+	la $a0, file_location
 	jal openFile			#openFile is called, the FileDescriptor is saved in $s0
+	jal openFileToWrite		#output file is opened
 	addi $sp, $sp, -4		#make room on the stack for one word (4 bytes)
 	sw $s0, 0($sp)			#save the $s0 (the file descriptor) onto the stack for later
 readlinefromfile:
@@ -18,7 +20,7 @@ readlinefromfile:
 
 .globl afterReading
 afterReading:
-	jal countSpace
+	jal parseStatements
 	addi $sp, $sp, 4		#move the stack pointer
 	lw $s0, 0($sp)			#take back the object stored on the stack ($s0 - file descriptor)
 	j readlinefromfile		#jump back to reading line fromfile
@@ -29,9 +31,26 @@ notify:
 	syscall
 	jr $ra
 
-
-
 .globl endProgram
 endProgram:
-	li $v0, 10
+
+   
+jal closeEditingFile
+
+#PLAY THE SOUND
+	li $v0,33
+	li $a0, 60
+	li $a1, 100
+	li $a2, 10
+	li $a3, 100
 	syscall
+	
+	li $v0,33
+	li $a0, 65
+	li $a1, 700
+	li $a2, 10
+	li $a3, 100
+	syscall
+	
+li $v0, 10
+syscall

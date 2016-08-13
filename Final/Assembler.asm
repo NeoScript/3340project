@@ -1,6 +1,6 @@
 .data
 #File helpers:
-file_location: .asciiz "/Users/Raviteja/Documents/Projects/MIPSprograms/MipsAssembler/Assembler/test.asm"
+file_location: .asciiz "/Users/Raviteja/Documents/Projects/MIPSprograms/MipsAssembler/test.asm"
 endOfFileLine: .asciiz ".end"
 #Error Messages:
 readErrorMsg: .asciiz "\nError in reading file\n"
@@ -34,12 +34,9 @@ notify:
 .globl endProgram
 endProgram:
 
-    
-move $a0, $v0  # load desired value into argument register $a0, using pseudo-op
-li  $v0, 1           # service 1 is print integer
-syscall
+jal closeEditingFile		
+	
 
-jal closeEditingFile
 
 #PLAY THE SOUND
 	li $v0,33
@@ -55,6 +52,8 @@ jal closeEditingFile
 	li $a2, 10
 	li $a3, 100
 	syscall
-	
+
+
 li $v0, 10
 syscall
+

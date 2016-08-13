@@ -34,6 +34,6 @@ notify:
 
 .globl endProgram
 endProgram:
-	jal closeFile
+	jal closeEditingFile
 	li $v0, 10
 	syscall

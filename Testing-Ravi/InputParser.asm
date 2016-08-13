@@ -6,12 +6,13 @@ head1:      .asciiz "\nOriginal String:  "
 head2:      .asciiz "\nNumber of spaces:  "
 head3:      .asciiz "\nWith spaces removed:  "
 head4:      .asciiz "\nSeparated:  "
+head5:      .asciiz "\nLabel Found:  "
 endOfFileLine: .asciiz ".end"
 
 
 .text
-.globl countSpace
-countSpace:
+.globl parseStatements
+parseStatements:
     la      $s0, strNS
     addi    $sp, $sp, -12   #adjust the stack pointer for saving
     sw      $s0, 8($sp)     #store addr of nospace string
@@ -48,7 +49,8 @@ loop:
     sb      $t2, 8($sp)     #save the character in str[i]
     sw      $t1, 4($sp)     #save the address of str[i] 
     sw      $t0, 0($sp)     #save the count of spaces
-
+	
+    jal     isColon        #check if it is a colon
     jal     isSpace         #result from this jump and link will be in $v0 after call
 
     #pop saved values from the stack, then reset the pointer
@@ -84,6 +86,50 @@ exitCS:
     addi    $sp, $sp, 8     #reset stack pointer
     jr      $ra             #return
 
+
+isColon:
+    addi    $sp, $sp, -16   #adjust stack pointer to make room
+    sw 	    $t0, 12($sp)
+    sw      $s0, 8($sp)
+    sw      $ra, 4($sp)     #store value of return addr onto stack
+    sw      $a0, 0($sp)     #store value to check onto stack
+
+    #Check to see if the character is a space
+    li      $t0, 58         #ascii value for colon character loaded into $t0
+    li      $v0, 0          #Set default return to 0, or "not a colon character"
+    bne     $a0, ':', endSC #if ascii values match, character is a colon
+    li      $v0, 1          #$v0 = 1 means it is a colon character 
+	
+	li   $v0, 4   
+	la   $a0, head5      #print the word
+ 	syscall 
+ 	move    $a0, $t5      #print the word
+ 	syscall 
+ 	
+ 	move    $a1, $s5      #send the PC Counter Value
+
+	#PROCESS T5
+	jal checkEOF	#check to see if we have reached end of file
+	#If not, save the label and the current PC value to memory in their respective arrays 
+	addi $sp, $sp, -12
+        sw  $ra, 0($sp) 
+        sw      $t5, 4($sp)
+        sw      $t7, 8($sp) 
+    	jal processLabel #do processing on the input argument   
+        lw      $t7, 8($sp) 
+        lw      $t5, 4($sp)
+        lw  $ra, 0($sp)
+    	addi $sp, $sp, 12
+	
+	
+	#CLEAR
+ 	jal clearBuffer
+ 	add   $t6, $zero, $zero     #increment the index of nospaces
+ 	
+ 	
+   j endSC
+   
+   
 isSpace:
     addi    $sp, $sp, -16   #adjust stack pointer to make room
     sw 	    $t0, 12($sp)

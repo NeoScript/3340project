@@ -1,6 +1,6 @@
 
 .data
-output_file_name:   .asciiz "C:/Users/sgb150130/Downloads/3340project-master/3340project-master/Testing-Sriram/test.txt"      
+output_file_name:   .asciiz "/Users/Raviteja/Documents/Projects/MIPSprograms/MipsAssembler/Testing-Ravi/test.txt"      
 buffer: .asciiz "The quick brown fox jumps over the lazy dog."
 file_descriptor: .word 0
 
@@ -28,8 +28,8 @@ openFileToWrite:
   syscall            # write to file
   jr $ra
   
-.globl closeFile
-closeFile:
+.globl closeEditingFile
+closeEditingFile:
   # Close the file 
   li   $v0, 16       # system call for close file
   lw $a0, file_descriptor      # file descriptor to close

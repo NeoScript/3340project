@@ -20,7 +20,7 @@ currBufferMsg: .asciiz "\nCurrBuffer:"
 openFile:
 	#Open file for for reading purposes
 	li $v0, 13			#syscall 13 - open file
-	la $a0, file_loc		#passing in file name
+	#la $a0, file_loc		#passing in file name
 	li $a1, 0			#set to read mode
 	li $a2, 0			#mode is ignored
 	syscall
@@ -93,6 +93,7 @@ printCurrBuffer:
 	jr $ra
 	
 printFoundNewLine:
+	addi $s5, $s5, 1
 	li $v0, 4
 	la $a0, newLineFound
 	syscall
@@ -104,7 +105,7 @@ printNewLine:
 	syscall
 	jr $ra
 
-	
+.globl closeFile
 closeFile:
 	#Close the file 
 	li   $v0, 16       # system call for close file

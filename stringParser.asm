@@ -1,18 +1,32 @@
-.data
-str:        .space 23   # buffer for input string
-strNS:      .space 23   # buffer for string w/o spaces
+    .data
+str:        .space 81   # buffer for input string
+strNS:      .space 81   # buffer for string w/o spaces
 prompt:     .asciiz "Enter a string up to 80 characters\n"
 head1:      .asciiz "\nOriginal String:  "
 head2:      .asciiz "\nNumber of spaces:  "
 head3:      .asciiz "\nWith spaces removed:  "
 head4:      .asciiz "\nSeparated:  "
-head5:      .asciiz "\nLabel Found:  "
-endOfFileLine: .asciiz ".end"
 
+.text   
+.globl main
 
-.text
-.globl parseStatements
-parseStatements:
+main:   
+    #print the first prompt and get the input string from console
+    li      $v0, 4          #load syscall value to print string into $v0
+    la      $a0, prompt     #address of prompt to print
+    syscall                 #print prompt to console
+    li      $v0, 8          #load syscall value to read input string
+    la      $a0, str        #addr of allocated space for input string is now in $a0
+    li      $a1, 81
+    syscall 
+
+    jal     countSpace
+
+End:    
+    li      $v0, 10         #load syscall value for exit
+    syscall                 #exit
+
+countSpace:
     la      $s0, strNS
     addi    $sp, $sp, -12   #adjust the stack pointer for saving
     sw      $s0, 8($sp)     #store addr of nospace string
@@ -29,14 +43,14 @@ loop:
     add     $t1, $t3, $t4   #$t1 = addr of str[i]
     lb      $t2, 0($t1)     #$t2 = character in str[i]
     
-    isComma:
+isComma:
     li      $t0, 44         #ascii value for comma character loaded into $t0
-    bne     $t0, $t2, continue #if ascii values dont match, character is a not a comma go to continue
+    bne     $t0, $t2, continue #if ascii values match, character is a space
     li      $t0, 32         #ascii value for space character loaded into $t0
     sb      $t0, 0($t1)     # character in str[i] =  $t0
     lb      $t2, 0($t1)     #$t2 = character in str[i] = space
-    
-    continue:
+	
+continue: 
     beq     $t2, $zero, exitCS  #break from loop if $t2 contains null character
     addi    $a0, $t2, 0     #place value to be checked in $a0
 
@@ -49,8 +63,7 @@ loop:
     sb      $t2, 8($sp)     #save the character in str[i]
     sw      $t1, 4($sp)     #save the address of str[i] 
     sw      $t0, 0($sp)     #save the count of spaces
-	
-    jal     isColon        #check if it is a colon
+
     jal     isSpace         #result from this jump and link will be in $v0 after call
 
     #pop saved values from the stack, then reset the pointer
@@ -86,50 +99,6 @@ exitCS:
     addi    $sp, $sp, 8     #reset stack pointer
     jr      $ra             #return
 
-
-isColon:
-    addi    $sp, $sp, -16   #adjust stack pointer to make room
-    sw 	    $t0, 12($sp)
-    sw      $s0, 8($sp)
-    sw      $ra, 4($sp)     #store value of return addr onto stack
-    sw      $a0, 0($sp)     #store value to check onto stack
-
-    #Check to see if the character is a space
-    li      $t0, 58         #ascii value for colon character loaded into $t0
-    li      $v0, 0          #Set default return to 0, or "not a colon character"
-    bne     $a0, ':', endSC #if ascii values match, character is a colon
-    li      $v0, 1          #$v0 = 1 means it is a colon character 
-	
-	li   $v0, 4   
-	la   $a0, head5      #print the word
- 	syscall 
- 	move    $a0, $t5      #print the word
- 	syscall 
- 	
- 	move    $a1, $s5      #send the PC Counter Value
-
-	#PROCESS T5
-	jal checkEOF	#check to see if we have reached end of file
-	#If not, save the label and the current PC value to memory in their respective arrays 
-	addi $sp, $sp, -12
-        sw  $ra, 0($sp) 
-        sw      $t5, 4($sp)
-        sw      $t7, 8($sp) 
-    	jal processLabel #do processing on the input argument   
-        lw      $t7, 8($sp) 
-        lw      $t5, 4($sp)
-        lw  $ra, 0($sp)
-    	addi $sp, $sp, 12
-	
-	
-	#CLEAR
- 	jal clearBuffer
- 	add   $t6, $zero, $zero     #increment the index of nospaces
- 	
- 	
-   j endSC
-   
-   
 isSpace:
     addi    $sp, $sp, -16   #adjust stack pointer to make room
     sw 	    $t0, 12($sp)
@@ -150,24 +119,24 @@ isSpace:
  move    $a0, $t5      #print the word
  syscall 
  
-#PROCESS T5
-	jal checkEOF	#check to see if we have reached end of file
-	#Done checking for EOF, if we reached this point we can now check for operands/registers
-	
-	addi $sp, $sp, -12
-        sw  $ra, 0($sp) 
-        sw      $t5, 4($sp)
-        sw      $t7, 8($sp) 
-    	jal processOperation #do processing on the input argument   
-        lw      $t7, 8($sp) 
-        lw      $t5, 4($sp)
-        lw  $ra, 0($sp)
-    	addi $sp, $sp, 12
+#PROCESS T5 
+#t5 contains the operation and operand, whatever method you write, place it here and call it
+#move the contents of #t5 into $a0 and do whatever we need to with that
+#do in separateFile
 
-    
-#CLEAR
- 	jal clearBuffer
- add   $t6, $zero, $zero     #increment the index of nospaces
+	addi $sp, $sp, -12
+		sw 	$ra, 0($sp) 
+		sw      $t5, 4($sp)
+    		sw      $t7, 8($sp) 
+	jal processOperation #do processing on the input argument	
+		lw      $t7, 8($sp) 
+		lw      $t5, 4($sp)
+    		lw 	$ra, 0($sp)
+	addi $sp, $sp, 12
+	
+#CLEAR 
+jal clearBuffer
+add   $t6, $zero, $zero     #increment the index of nospaces
  
  
 endSC:  
@@ -181,29 +150,16 @@ endSC:
 end:    jr $ra
 
 clearBuffer:
-# 23 space buffer
+# 81 space buffer
 	li $t1, 0				#sets t1 to zero, uses it as index counter
 	la $a0, strNS				#loads stringNoSpace into $a0
 	add $t0, $zero, $a0			#t0 it set to the base address of a0
 	clearloop:
 	sb $zero, 0($t0)			#set the content at t0 to zero
-	bge $t1, 23, endclearloop		#if we reached 23 bits then we done
+	bge $t1, 81, endclearloop		#if we reached 81 bits then we done
 	addi $t0, $t0 1				#else add 1 to the address, thus we are on the next character
 	addi $t1, $t1, 1			#also add 1 to the counter
 	j clearloop
 	
 	endclearloop:
-	jr $ra
-	
-checkEOF:
-	addi $sp $sp, -4
-	sw $ra, 0($sp)
-	
-	la $a1, endOfFileLine
-	jal StrCmp
-	
-	beqz $v0, endProgram
-		
-	lw $ra, 0($sp)
-	addi $sp, $sp, 4
 	jr $ra
